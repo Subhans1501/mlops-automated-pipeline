@@ -30,3 +30,10 @@ jobs:
     - name: Execute Training Script
       run: |
         python src/train.py
+        
+    - name: Deploy to Hugging Face
+      env:
+        HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      run: |
+        pip install huggingface_hub
+        python src/deploy.py
