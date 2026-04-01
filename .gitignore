@@ -1,5 +1,4 @@
-# Ignore Datasets
-data/
+
 
 # Ignore MLflow artifacts and databases
 mlruns/
