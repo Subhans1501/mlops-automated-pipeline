@@ -53,7 +53,7 @@ def train_and_evaluate(X_train, X_test, y_train, y_test, model_name, model_param
         mlflow.sklearn.log_model(model,artifact_path="model")
         print(f"Successfully logged {model_name} to MLflow.")
 if __name__ == "__main__":
-    DATA_PATH=r"data\phishing_email.csv"
+    DATA_PATH=r"data/phishing_email.csv"
     X,y=load_data(DATA_PATH)
     print("Vectorizing text data with TF-IDF...")
     vectorizer=TfidfVectorizer(max_features=5000)
