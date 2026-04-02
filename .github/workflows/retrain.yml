@@ -1,0 +1,28 @@
+name: Weekly Auto-Retraining
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'
+  workflow_dispatch: # This line is the magic button that lets you run it manually!
+
+jobs:
+  retrain-model:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Execute Retraining
+      run: |
+        python src/train.py
