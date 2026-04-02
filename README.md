@@ -1,4 +1,4 @@
-# 🚀 MLOps Automated Pipeline: Phishing Email Detection
+# MLOps Automated Pipeline: Phishing Email Detection
 
 ![Python](https://img.shields.io/badge/Python-3.10-blue.svg)
 ![MLflow](https://img.shields.io/badge/MLflow-Tracking_%26_Registry-0194E2.svg)
@@ -7,7 +7,7 @@
 
 An end-to-end Machine Learning Operations (MLOps) pipeline designed to automatically train, evaluate, track, and deploy a binary classification model for detecting phishing emails. 
 
-## 📋 Project Overview
+## Project Overview
 This repository demonstrates a complete CI/CD and Continuous Training (CT) lifecycle for machine learning. It features automated experiment tracking, model registry management, and scheduled retraining using GitHub Actions and MLflow.
 
 ### Key Features
@@ -17,63 +17,59 @@ This repository demonstrates a complete CI/CD and Continuous Training (CT) lifec
 * **Continuous Training (CT):** A scheduled cron job triggers weekly retraining pipelines to ensure the model adapts to new data patterns without manual intervention.
 * **Automated Deployment:** Integration with the Hugging Face Hub API for automated model artifact deployment.
 
-## 📂 Repository Structure
+## Repository Structure
 
-```text
-mlops-automated-pipeline/
-│
-├── .github/workflows/       # GitHub Actions CI/CD pipelines
-│   ├── ci.yml               # Triggered on push (Test -> Train -> Deploy)
-│   └── retrain.yml          # Time-based trigger (Scheduled Retraining)
-│
-├── data/                    # Dataset directory
-│   └── phishing_email.csv   
-│
-├── src/                     # Source code directory
-│   ├── train.py             # Main training, evaluation, and MLflow logging script
-│   ├── test_model.py        # Pytest suite for data integrity checks
-│   └── deploy.py            # Hugging Face deployment script
-│
-├── .gitignore               # Git ignore rules (excludes mlflow.db, mlruns)
-├── requirements.txt         # Python package dependencies
-└── README.md                # Project documentation
-🛠️ Local Setup & Execution
+    mlops-automated-pipeline/
+    │
+    ├── .github/workflows/       # GitHub Actions CI/CD pipelines
+    │   ├── ci.yml               # Triggered on push (Test -> Train -> Deploy)
+    │   └── retrain.yml          # Time-based trigger (Scheduled Retraining)
+    │
+    ├── data/                    # Dataset directory
+    │   └── phishing_email.csv   
+    │
+    ├── src/                     # Source code directory
+    │   ├── train.py             # Main training, evaluation, and MLflow logging script
+    │   ├── test_model.py        # Pytest suite for data integrity checks
+    │   └── deploy.py            # Hugging Face deployment script
+    │
+    ├── .gitignore               # Git ignore rules (excludes mlflow.db, mlruns)
+    ├── requirements.txt         # Python package dependencies
+    └── README.md                # Project documentation
+
+## Local Setup & Execution
+
 To run this pipeline locally on your machine:
 
-1. Clone the repository
+**1. Clone the repository**
+    git clone https://github.com/Subhans1501/mlops-automated-pipeline.git
+    cd mlops-automated-pipeline
 
-Bash
-git clone [https://github.com/](https://github.com/)[YourUsername]/mlops-automated-pipeline.git
-cd mlops-automated-pipeline
-2. Create and activate a virtual environment
+**2. Create and activate a virtual environment**
+    python -m venv .venv
+    source .venv/Scripts/activate  # On Windows
+    # source .venv/bin/activate    # On Mac/Linux
 
-Bash
-python -m venv .venv
-source .venv/Scripts/activate  # On Windows
-# source .venv/bin/activate    # On Mac/Linux
-3. Install dependencies
+**3. Install dependencies**
+    pip install -r requirements.txt
 
-Bash
-pip install -r requirements.txt
-4. Run local tests
+**4. Run local tests**
+    pytest src/test_model.py
 
-Bash
-pytest src/test_model.py
-5. Execute the training pipeline
+**5. Execute the training pipeline**
+    python src/train.py
 
-Bash
-python src/train.py
-6. View MLflow Dashboard
+**6. View MLflow Dashboard**
+    mlflow ui
 
-Bash
-mlflow ui
-Navigate to http://127.0.0.1:5000 in your browser to view experiment tracking and model registries.
+*Navigate to `http://127.0.0.1:5000` in your browser to view experiment tracking and model registries.*
 
-📈 Model Performance
+## Model Performance
 Two models were evaluated during the initial pipeline run:
-
-Logistic Regression (Production): Accuracy = 0.981, F1-Score = 0.982
-
-Random Forest: Accuracy = 0.929, F1-Score = 0.934
+1. **Logistic Regression (Production):** Accuracy = 0.981, F1-Score = 0.982
+2. **Random Forest:** Accuracy = 0.929, F1-Score = 0.934
 
 Due to superior performance metrics, the Logistic Regression model was automatically selected, registered, and promoted to Production.
+
+---
+*Developed by Subhan Shahid for MLOps Assignment 2.*
